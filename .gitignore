@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# configure for MacOS
+*.DS_Store
