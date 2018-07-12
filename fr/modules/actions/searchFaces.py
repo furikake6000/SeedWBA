@@ -12,7 +12,7 @@ BASE_ACTION = {
 
 class SearchFaces(object):
     def __init__(self):
-        pass
+        self.fd = FaceDetector()
 
     def activate(self):
         # Called when action activated
@@ -20,7 +20,7 @@ class SearchFaces(object):
     
     def update(self):
         # Called every frame while action is activated
-        facerect = FaceDetector.getFacerect(None)
+        facerect = self.fd.getFacerect(None)
         act = BASE_ACTION
         if str(facerect) != "None" and len(facerect) > 0:
             act["wheelleft"] = 0.0

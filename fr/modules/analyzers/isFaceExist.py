@@ -4,9 +4,11 @@ import time
 from .facedetector import FaceDetector
 
 class IsFaceExist(object):
+    def __init__(self):
+        self.fd = FaceDetector()
     
     def analyze(self, observation):
-        facerect = FaceDetector.getFacerect(observation)
+        facerect = self.fd.getFacerect(observation)
         if str(facerect) == "None": return
         if len(facerect) > 0:
             return 1.0

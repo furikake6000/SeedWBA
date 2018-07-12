@@ -2,19 +2,21 @@
 import cv2
 import time
 
+# Constants
 # cascade_path = "./haarcascades/haarcascade_frontalface_default.xml"
 cascade_path = "/var/opencv/haarcascades/haarcascade_frontalface_default.xml"
+# refresh rate
+refreshRate = 0.1 # sec
 
 class FaceDetector(object):
-    facerect = None
-    refreshRate = 0.1 # sec
-    lastRefreshed = 0.0 # sec
+    def __init__(self):
+        self.facerect = None
+        self.lastRefreshed = 0.0 # sec
 
-    @classmethod
     def getFacerect(self, observation):
         # Return cached data or not
-        if (time.time() - FaceDetector.lastRefreshed) < FaceDetector.refreshRate or observation == None:
-            return FaceDetector.facerect
+        if (time.time() - self.lastRefreshed) < refreshRate or observation == None:
+            return self.facerect
 
         # Engray image
         if str(observation["image"]) == "None": return
@@ -24,7 +26,7 @@ class FaceDetector(object):
         cascade = cv2.CascadeClassifier(cascade_path)
 
         # Get facerect
-        FaceDetector.facerect = cascade.detectMultiScale(
+        self.facerect = cascade.detectMultiScale(
             image_gray, 
             scaleFactor = 1.1,
             minNeighbors = 2,
@@ -32,24 +34,21 @@ class FaceDetector(object):
         )
 
         # Update cache time
-        FaceDetector.lastRefreshed = time.time()
+        self.lastRefreshed = time.time()
 
-        return FaceDetector.facerect
+        return self.facerect
 
-    @classmethod
     def biggestFaceRect(self, observation):
-        facerect = self.getFacerect(observation)
-        if str(facerect) == "None": return
-        return max(facerect, key= (lambda r: r[2] * r[3]))
+        self.facerect = self.getFacerect(observation)
+        if str(self.facerect) == "None": return
+        return max(self.facerect, key= (lambda r: r[2] * r[3]))
     
-    @classmethod
     def biggestFaceSizeNormalized(self, observation):
         width, height, _ = observation["image"].shape
         biggestface = self.biggestFaceRect(observation)
         if str(biggestface) == "None": return 0.0
         return biggestface[2] * biggestface[3] / width / height
 
-    @classmethod
     def biggestFaceRectPosNormalized(self, observation):
         width, height, _ = observation["image"].shape
         biggestface = self.biggestFaceRect(observation)

@@ -4,6 +4,9 @@ import math
 from ..analyzers.facedetector import FaceDetector
 
 class Noaction(object):
+    def __init__(self):
+        self.fd = FaceDetector()
+
     def activate(self):
         # Called when action activated
         return {}
@@ -14,10 +17,10 @@ class Noaction(object):
             "wheelright": 0.0
         }
         # Called every frame while action is activated
-        if str(FaceDetector.biggestFaceRect) != "None":
+        if str(self.fd.biggestFaceRect) != "None":
             # If face exists
-            x, _ = FaceDetector.biggestFaceRectPosNormalized(None)
-            size = FaceDetector.biggestFaceSizeNormalized(None)
+            x, _ = self.fd.biggestFaceRectPosNormalized(None)
+            size = self.fd.biggestFaceSizeNormalized(None)
             if abs(x) > 0.3:
                 if x > 0:
                     # Rotate to left

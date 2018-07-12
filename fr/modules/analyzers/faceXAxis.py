@@ -3,7 +3,9 @@ import cv2
 from .facedetector import FaceDetector
 
 class FaceXAxis(object):
+    def __init__(self):
+        self.fd = FaceDetector()
     
     def analyze(self, observation):
-        x, _ = FaceDetector.biggestFaceRectPosNormalized(observation)
+        x, _ = self.fd.biggestFaceRectPosNormalized(observation)
         return x
