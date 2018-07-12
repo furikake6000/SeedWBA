@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import cv2
 import math
-from ..analyzers.facedetector import FaceDetector
+from ..submodules.facedetector import FaceDetector
 
 class Noaction(object):
     def __init__(self):

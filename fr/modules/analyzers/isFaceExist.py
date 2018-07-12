@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import cv2
 import time
-from .facedetector import FaceDetector
+from ..submodules.facedetector import FaceDetector
 
 class IsFaceExist(object):
     def __init__(self):

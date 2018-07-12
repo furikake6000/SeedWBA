@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import cv2
-from .facedetector import FaceDetector
+from ..submodules.facedetector import FaceDetector
 
 class FaceXAxis(object):
     def __init__(self):

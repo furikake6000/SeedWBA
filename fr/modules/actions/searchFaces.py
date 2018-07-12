@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 import math
-from ..analyzers.facedetector import FaceDetector
+from ..submodules.facedetector import FaceDetector
 
 BASE_ACTION = {
     "armleft": 0.0,
