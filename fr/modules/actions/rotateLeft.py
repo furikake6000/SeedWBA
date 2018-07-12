@@ -15,7 +15,7 @@ class RotateLeft(object):
         # Called when action activated
         return {}
     
-    def update(self):
+    def __call__(self):
         # Called every frame while action is activated
         act = BASE_ACTION
         act["wheelleft"] = -0.1

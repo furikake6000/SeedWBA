@@ -6,6 +6,6 @@ class FaceXAxis(object):
     def __init__(self):
         self.fd = FaceDetector()
     
-    def analyze(self, observation):
+    def __call__(self, observation):
         x, _ = self.fd.biggestFaceRectPosNormalized(observation)
         return x

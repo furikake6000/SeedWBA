@@ -5,7 +5,7 @@ class Action(object):
         # Called when action activated
         pass
     
-    def update(self):
+    def __call__(self):
         # Called every frame while action is activated
         pass
 

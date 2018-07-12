@@ -20,7 +20,7 @@ class RaiseRightHand(object):
         act["armright"] = 1.0
         return act
     
-    def update(self):
+    def __call__(self):
         # Called every frame while action is activated
         pass
 

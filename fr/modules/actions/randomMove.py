@@ -21,7 +21,7 @@ class RandomMove(object):
         act["armright"] = 1.0
         return act
     
-    def update(self):
+    def __call__(self):
         # Called every frame while action is activated
         act = BASE_ACTION
         act["armleft"] = math.sin(time.time() * 2)

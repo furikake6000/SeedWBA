@@ -4,6 +4,6 @@ class Analyzer(object):
     def __init__(self):
         pass
 
-    def analyze(self, observation):
+    def __call__(self, observation):
         # Return scholar (not vector or dict)
         pass

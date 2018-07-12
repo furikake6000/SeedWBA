@@ -11,7 +11,7 @@ class Noaction(object):
         # Called when action activated
         return {}
     
-    def update(self):
+    def __call__(self):
         act = {
             "wheelleft": 0.0,
             "wheelright": 0.0

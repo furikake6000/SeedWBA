@@ -5,7 +5,7 @@ class Noaction(object):
         # Called when action activated
         return {}
     
-    def update(self):
+    def __call__(self):
         # Called every frame while action is activated
         return {}
 

@@ -7,7 +7,7 @@ class IsFaceExist(object):
     def __init__(self):
         self.fd = FaceDetector()
     
-    def analyze(self, observation):
+    def __call__(self, observation):
         facerect = self.fd.getFacerect(observation)
         if str(facerect) == "None": return
         if len(facerect) > 0:
